@@ -29,7 +29,6 @@ namespace CircleToSquare
             int centerX = width / 2;
             int centerY = height / 2;
 
-            // Radii for the ellipse
             double radiusX = width / 2.0;
             double radiusY = height / 2.0;
 
@@ -37,30 +36,20 @@ namespace CircleToSquare
             {
                 for (int x = 0; x < width; x++)
                 {
-                    // Normalize coordinates relative to the ellipse
                     double normX = (x - centerX) / radiusX;
                     double normY = (y - centerY) / radiusY;
                     double distance = Math.Sqrt(normX * normX + normY * normY);
 
-                    if (distance <= 1.0)
-                    {
-                        // Map to the "square" using ellipse-aware calculations
-                        double squareX = normX * Math.Sqrt(1 - (normY * normY / 2));
-                        double squareY = normY * Math.Sqrt(1 - (normX * normX / 2));
+                    double squareX = normX * Math.Sqrt(1 - (normY * normY / 2));
+                    double squareY = normY * Math.Sqrt(1 - (normX * normX / 2));
 
-                        int sourceX = (int)(squareX * radiusX + centerX);
-                        int sourceY = (int)(squareY * radiusY + centerY);
+                    int sourceX = (int)(squareX * radiusX + centerX);
+                    int sourceY = (int)(squareY * radiusY + centerY);
 
-                        sourceX = Math.Clamp(sourceX, 0, width - 1);
-                        sourceY = Math.Clamp(sourceY, 0, height - 1);
+                    sourceX = Math.Clamp(sourceX, 0, width - 1);
+                    sourceY = Math.Clamp(sourceY, 0, height - 1);
 
-                        outputImage.SetPixel(x, y, inputImage.GetPixel(sourceX, sourceY));
-                    }
-                    else
-                    {
-                        // Outside the ellipse, use transparent or a default color
-                        outputImage.SetPixel(x, y, Color.Transparent);
-                    }
+                    outputImage.SetPixel(x, y, inputImage.GetPixel(sourceX, sourceY));
                 }
             }
 

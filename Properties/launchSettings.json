@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "CircleToSquare": {
+      "commandName": "Project",
+      "commandLineArgs": "CHMap.png\r\nCHMapNew.png",
+      "workingDirectory": "C:\\Users\\amirg\\Downloads"
+    }
+  }
+}
