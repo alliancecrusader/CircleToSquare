@@ -11,7 +11,7 @@ namespace CircleToSquare
 
             try
             {
-                CircleToSquareTransformer.TransformCircleToSquare(inputImagePath, outputImagePath);
+                CircleToSquareTransformer.TransformToEllipse(inputImagePath, outputImagePath);
                 Console.WriteLine($"Successfully transformed {inputImagePath} to {outputImagePath}");
             }
             catch (Exception e)
